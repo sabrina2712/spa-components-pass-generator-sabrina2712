@@ -5,14 +5,25 @@ class Password extends Component {
     super(props);
     this.bucketArr = [];
     this.passLength = 12;
+    this.includeBothCase = false;
+    this.includeSpecialChar = false;
   }
   passGenerator() {
-    const bucketArr = [
+    const buckets = [
       "abcdefghijklmnopqrstuvwxyz",
       "123456789",
       "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
       "@!-§$%&()?#+",
     ];
+
+    const bucketArr = [buckets[0], buckets[1]];
+
+    if (this.includeBothCase === true) {
+      bucketArr.push(buckets[2]);
+    }
+    if (this.includeSpecialChar === true) {
+      bucketArr.push(buckets[3]);
+    }
 
     let finalArr = [];
     for (let index = 0; index < this.passLength; index++) {
